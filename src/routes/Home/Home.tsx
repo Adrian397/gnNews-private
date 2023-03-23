@@ -1,7 +1,8 @@
+import { NewsList } from "@components/NewsList/NewsList";
 import { ReactElement } from "react";
 
 const Home = (): ReactElement => {
-  return <div>{/* <h1> Its Home Page</h1> */}</div>;
+  return <NewsList />;
 };
 
 export default Home;
