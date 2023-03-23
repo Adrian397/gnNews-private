@@ -1,4 +1,6 @@
-const App = () => {
+import { ReactElement } from "react";
+
+const App = (): ReactElement => {
   return <div className="App">test</div>;
 };
 
