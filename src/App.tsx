@@ -1,7 +1,14 @@
+import GlobalStyles from "@globalStyles";
+import { Router } from "@routes/Router";
 import { ReactElement } from "react";
 
 const App = (): ReactElement => {
-  return <div className="App">test</div>;
+  return (
+    <>
+      <GlobalStyles />
+      <Router />
+    </>
+  );
 };
 
 export default App;
