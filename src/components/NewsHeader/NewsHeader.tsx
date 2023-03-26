@@ -1,35 +1,34 @@
-import ArrowDown from "@assets/arrow-down.png";
-import { ReactElement, useEffect, useState } from "react";
-import { MenuDropdown, SortBy, Wrapper } from "./NewsHeader.styled";
+import { ReactElement } from "react";
+import { Wrapper } from "./NewsHeader.styled";
 
 export const NewsHeader = (): ReactElement => {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("newest");
+  // const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-  useEffect(() => {
-    const storedSelectedItem = localStorage.getItem("sortBy");
-    if (storedSelectedItem) {
-      setSelectedMenuItem(storedSelectedItem);
-    }
-  }, []);
+  // const selectedSortOption = useSelector(
+  //   (state: RootState) => state.sortBy.option
+  // );
 
-  const handleMenuItemClick = (item: string) => {
-    setSelectedMenuItem(item);
-    localStorage.setItem("sortBy", item);
-    setIsMenuVisible(false);
-  };
+  // console.log(selectedSortOption);
 
-  const menuItems = ["relevance", "popularity", "newest"].filter(
-    (item) => item !== selectedMenuItem
-  );
+  // const dispatch = useDispatch();
+
+  // const handleMenuItemClick = (item: SortByOption) => {
+  //   dispatch(setSortOption(item));
+  //   dispatch(newsApi.util.invalidateTags(["News"]));
+  //   setIsMenuVisible(false);
+  // };
+
+  // const menuItems = ["publishedAt", "popularity"].filter(
+  //   (item) => item !== selectedSortOption
+  // ) as SortByOption[];
 
   return (
     <Wrapper>
-      <SortBy>
+      {/* <SortBy>
         <h3>Sort by:</h3>
         <MenuDropdown isVisible={isMenuVisible}>
           <button onClick={() => setIsMenuVisible(!isMenuVisible)}>
-            {selectedMenuItem} <img alt="arrow down" src={ArrowDown} />
+            {selectedSortOption} <img alt="arrow down" src={ArrowDown} />
           </button>
           {isMenuVisible && (
             <div>
@@ -41,7 +40,7 @@ export const NewsHeader = (): ReactElement => {
             </div>
           )}
         </MenuDropdown>
-      </SortBy>
+      </SortBy> */}
       <h3>
         You are currently viewing news for: <span>Poland</span>
       </h3>

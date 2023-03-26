@@ -1,4 +1,3 @@
-import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
 import { NewsHeader } from "@components/NewsHeader/NewsHeader";
 import { SideMenu } from "@components/SideMenu/SideMenu";
@@ -15,7 +14,7 @@ const Layout = (): ReactElement => {
         <NewsWrapper>
           <NewsHeader />
           <Outlet />
-          <Footer />
+          {/* <Footer /> */}
         </NewsWrapper>
       </MainContentWrapper>
     </div>
