@@ -2,13 +2,14 @@ import { StyledProps } from "@utils/styledProps";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: calc(100vh - 136px);
+  height: calc(100vh - 82px);
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
 `;
 
 export const List = styled.ul`
-  height: calc(100vh - 218px);
+  height: calc(100vh - 180px);
   overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr;

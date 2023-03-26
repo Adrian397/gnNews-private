@@ -1,4 +1,3 @@
-import { SortByOption } from "@redux/sortBy";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export type News = {
@@ -13,15 +12,15 @@ export type News = {
   urlToImage: string;
 };
 
-type NewsResponse = {
+export type NewsResponse = {
   articles: News[];
   totalResults: number;
 };
 
 type NewsArgs = {
-  pageNumber: number;
-  pageSize: number;
-  sortBy: SortByOption;
+  code?: string;
+  pageNumber?: number;
+  pageSize?: number;
 };
 
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -34,21 +33,19 @@ export const newsApi = createApi({
     baseUrl: `${proxyUrl}https://newsapi.org/v2`,
     headers: { Authorization: apiKey },
   }),
-  tagTypes: ["News"],
+  tagTypes: ["CountryNews"],
 
   endpoints: (builder) => ({
     getAll: builder.query<NewsResponse, NewsArgs>({
-      query: ({ pageNumber, pageSize, sortBy }) => ({
+      query: ({ pageNumber = 0, pageSize }) => ({
         url: "everything",
         params: {
           q: "all",
-          sortBy: sortBy,
+          sortBy: "popularity",
           page: pageNumber + 1,
           pageSize: pageSize,
         },
       }),
-
-      providesTags: ["News"],
 
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
@@ -59,6 +56,22 @@ export const newsApi = createApi({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
+      transformResponse: (response: NewsResponse) => ({
+        articles: response.articles,
+        totalResults: response.totalResults,
+      }),
+    }),
+
+    getSpecific: builder.query<NewsResponse, NewsArgs>({
+      query: ({ code, pageSize = 100 }) => ({
+        url: "top-headlines",
+        params: {
+          pageSize: pageSize,
+          country: code,
+        },
+      }),
+      providesTags: ["CountryNews"],
+
       transformResponse: (response: NewsResponse) => ({
         articles: response.articles,
         totalResults: response.totalResults,

@@ -1,5 +1,4 @@
 import { Header } from "@components/Header/Header";
-import { NewsHeader } from "@components/NewsHeader/NewsHeader";
 import { SideMenu } from "@components/SideMenu/SideMenu";
 import { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
@@ -12,9 +11,8 @@ const Layout = (): ReactElement => {
       <MainContentWrapper>
         <SideMenu />
         <NewsWrapper>
-          <NewsHeader />
+          {/* <NewsHeader /> */}
           <Outlet />
-          {/* <Footer /> */}
         </NewsWrapper>
       </MainContentWrapper>
     </div>

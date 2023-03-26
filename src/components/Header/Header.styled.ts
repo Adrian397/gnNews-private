@@ -1,3 +1,8 @@
+import Information from "@assets/information.png";
+import ListBlack from "@assets/list-black.svg";
+import ListWhite from "@assets/list-white.svg";
+import TileBlack from "@assets/tile-black.png";
+import TileWhite from "@assets/tile-white.png";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -22,7 +27,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Info = styled.button`
-  background: transparent url("/information.png") no-repeat center;
+  background: transparent url(${Information}) no-repeat center;
   border: none;
   background-size: 32px;
   width: 32px;
@@ -61,22 +66,24 @@ export const NewsView = styled.div`
   }
 
   label:nth-of-type(1) {
-    background: transparent url("/list-black.svg") no-repeat center;
+    background: transparent url(${ListBlack}) no-repeat center;
     background-size: 17px;
   }
 
   input:checked + label:nth-of-type(1) {
-    background: transparent url("/list-white.svg") no-repeat center;
+    background: transparent url(${ListWhite}) no-repeat center;
+
     background-size: 17px;
   }
 
   label:nth-of-type(2) {
-    background: transparent url("/tile-black.png") no-repeat center;
+    background: transparent url(${TileBlack}) no-repeat center;
+
     background-size: 17px;
   }
 
   input:checked + label:nth-of-type(2) {
-    background: transparent url("/tile-white.png") no-repeat center;
+    background: transparent url(${TileWhite}) no-repeat center;
     background-size: 17px;
   }
 

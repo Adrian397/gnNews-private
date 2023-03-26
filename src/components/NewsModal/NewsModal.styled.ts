@@ -1,3 +1,4 @@
+import Close from "@assets/close.png";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -27,7 +28,7 @@ export const Modal = styled.div`
     margin-bottom: 0.5rem;
 
     button {
-      background: transparent url("./close.png") no-repeat center;
+      background: transparent url(${Close}) no-repeat center;
       width: 16px;
       height: 16px;
       background-size: 16px;
@@ -56,5 +57,9 @@ export const Modal = styled.div`
     color: black;
     line-height: 1.2;
     margin-bottom: 1rem;
+  }
+
+  a {
+    word-wrap: break-word;
   }
 `;

@@ -1,8 +1,7 @@
 import NoPhoto from "@assets/no-photo.png";
 import { Footer } from "@components/Footer/Footer";
 import { NewsModal } from "@components/NewsModal/NewsModal";
-import { News, newsApi } from "@redux/api/api";
-import { RootState } from "@redux/store";
+import { News, NewsResponse } from "@redux/api/api";
 import {
   CSSProperties,
   ReactElement,
@@ -11,21 +10,26 @@ import {
   useRef,
   useState,
 } from "react";
-import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
-import { Content, List, ListItem, Photo, Wrapper } from "./NewsList.styled";
+import { Content, List, ListItem, Photo, Wrapper } from "./AllNewsList.styled";
 
-export const NewsList = (): ReactElement => {
+type Props = {
+  data?: NewsResponse;
+  isFetching: boolean;
+  isLoading: boolean;
+  onPageChange: React.Dispatch<React.SetStateAction<number>>;
+  page: number;
+};
+
+export const NewsList = ({
+  data,
+  isFetching,
+  isLoading,
+  page,
+  onPageChange,
+}: Props): ReactElement => {
   const [selectedItem, setSelectedItem] = useState<News | undefined>();
-  const [page, setPage] = useState(0);
-  const selectedSortOption = useSelector(
-    (state: RootState) => state.sortBy.option
-  );
-  const { data, isFetching, isLoading } = newsApi.useGetAllQuery({
-    pageNumber: page,
-    sortBy: selectedSortOption,
-    pageSize: 25,
-  });
+
   const listRef = useRef<HTMLUListElement>(null);
 
   const handleScroll = useCallback(() => {
@@ -44,7 +48,7 @@ export const NewsList = (): ReactElement => {
       data.articles.length % 25 === 0
     ) {
       console.log("Fetching more data...");
-      setPage(page + 1);
+      onPageChange(page + 1);
     }
   }, [page, isFetching]);
 
@@ -65,7 +69,7 @@ export const NewsList = (): ReactElement => {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: isLoading ? "calc(100vh - 229.78px)" : "",
+    height: isLoading ? "calc(100vh - 180px)" : "",
   };
 
   console.log(data);
