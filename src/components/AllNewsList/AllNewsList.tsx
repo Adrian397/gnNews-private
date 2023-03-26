@@ -2,6 +2,8 @@ import NoPhoto from "@assets/no-photo.png";
 import { Footer } from "@components/Footer/Footer";
 import { NewsModal } from "@components/NewsModal/NewsModal";
 import { News, NewsResponse } from "@redux/api/api";
+import { RootState } from "@redux/store";
+import { nanoid } from "@reduxjs/toolkit";
 import {
   CSSProperties,
   ReactElement,
@@ -10,6 +12,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { Content, List, ListItem, Photo, Wrapper } from "./AllNewsList.styled";
 
@@ -28,6 +31,8 @@ export const NewsList = ({
   page,
   onPageChange,
 }: Props): ReactElement => {
+  const { option } = useSelector((state: RootState) => state.layout);
+
   const [selectedItem, setSelectedItem] = useState<News | undefined>();
 
   const listRef = useRef<HTMLUListElement>(null);
@@ -47,7 +52,6 @@ export const NewsList = ({
       data &&
       data.articles.length % 25 === 0
     ) {
-      console.log("Fetching more data...");
       onPageChange(page + 1);
     }
   }, [page, isFetching]);
@@ -72,25 +76,25 @@ export const NewsList = ({
     height: isLoading ? "calc(100vh - 180px)" : "",
   };
 
-  console.log(data);
   return (
     <>
       <Wrapper>
-        <List ref={listRef}>
-          {data?.articles.map((item, index) => (
+        <List isLoading={isLoading} layout={option} ref={listRef}>
+          {data?.articles.map((item) => (
             <ListItem
               isVisible={!!item.urlToImage}
-              key={index}
+              key={nanoid()}
+              layout={option}
               onClick={() => setSelectedItem(item)}
             >
-              <Photo isVisible={!!item.urlToImage}>
+              <Photo isVisible={!!item.urlToImage} layout={option}>
                 {item.urlToImage ? (
                   <img src={item.urlToImage} /> /*eslint-disable-line*/
                 ) : (
                   <img src={NoPhoto} /> /*eslint-disable-line*/
                 )}
               </Photo>
-              <Content>
+              <Content layout={option}>
                 <div>
                   <h4>{item.title}</h4>
                   <p>{item.source.name}</p>

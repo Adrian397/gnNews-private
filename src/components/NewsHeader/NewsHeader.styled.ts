@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     color: #333;
 
     span {
-      color: #89cff0;
+      color: #000080;
     }
   }
 `;

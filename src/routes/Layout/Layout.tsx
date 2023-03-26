@@ -11,7 +11,6 @@ const Layout = (): ReactElement => {
       <MainContentWrapper>
         <SideMenu />
         <NewsWrapper>
-          {/* <NewsHeader /> */}
           <Outlet />
         </NewsWrapper>
       </MainContentWrapper>

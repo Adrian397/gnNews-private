@@ -11,18 +11,20 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { newsApi } from "./api/api";
-import sortByReducer from "./sortBy";
+import layoutReducer from "./layout";
+import sideMenuReducer from "./sideMenu";
 
 const persistConfig = {
   key: "root",
   storage,
 };
 
-const persistedSortReducer = persistReducer(persistConfig, sortByReducer);
+const persistedLayoutReducer = persistReducer(persistConfig, layoutReducer);
 
 export const store = configureStore({
   reducer: {
-    sortBy: persistedSortReducer,
+    layout: persistedLayoutReducer,
+    sideMenu: sideMenuReducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },
 

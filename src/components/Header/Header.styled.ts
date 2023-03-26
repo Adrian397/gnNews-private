@@ -1,3 +1,4 @@
+import Hamburger from "@assets/hamburger.svg";
 import Information from "@assets/information.png";
 import ListBlack from "@assets/list-black.svg";
 import ListWhite from "@assets/list-white.svg";
@@ -12,8 +13,32 @@ export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 3px solid #89cff0;
 
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button {
+      display: none;
+      padding: 1rem;
+      background-color: transparent;
+      border: 2px solid #333;
+      background: url(${Hamburger}) no-repeat center;
+      background-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1030px) {
+      button {
+        display: block;
+      }
+    }
+  }
+
   h1 {
     font-size: 2.5rem;
+
     a {
       color: #333;
       font-style: italic;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   height: 100vh;
+  padding: 0rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,6 +18,7 @@ export const Wrapper = styled.div`
 
 export const Modal = styled.div`
   width: 40rem;
+  max-width: 95%;
   background-color: white;
   border-radius: 4px;
   padding: 1rem;
