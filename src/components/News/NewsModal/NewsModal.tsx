@@ -1,5 +1,6 @@
 import { News } from "@redux/api/api";
 import { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import { Modal, Wrapper } from "./NewsModal.styled";
 
 type Props = {
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export const NewsModal = ({ item, onClose }: Props): ReactElement => {
+  const { t } = useTranslation("common", { keyPrefix: "NewsModal" });
+
   const handleCloseModal = () => {
     onClose();
   };
@@ -19,15 +22,13 @@ export const NewsModal = ({ item, onClose }: Props): ReactElement => {
           <button onClick={() => handleCloseModal()} />
         </div>
         <h3>{item?.title}</h3>
+        <p>{item?.description ? item.description : t("noDesc")}</p>
         <p>
-          {item?.description ? item.description : "no description provided"}
+          <span>{t("authors")}</span>{" "}
+          {item?.author ? item.author : t("noAuthors")}
         </p>
         <p>
-          <span>authors:</span>{" "}
-          {item?.author ? item.author : "no authors provided"}
-        </p>
-        <p>
-          <span>source url:</span> <a href={item?.url}>{item?.url}</a>
+          <span>{t("source")}</span> <a href={item?.url}>{item?.url}</a>
         </p>
       </Modal>
     </Wrapper>

@@ -1,1 +1,66 @@
-{}
+{
+  "Footer": {
+    "count": "liczba pobranych artykułów:",
+    "total": "liczba wszystkich artykułów:"
+  },
+  "NewsList": {
+    "published": "data publikacji:"
+  },
+  "NewsModal": {
+    "authors": "autorzy:",
+    "source": "źródło:",
+    "noDesc": "brak opisu",
+    "noAuthors": "nie podano autorów"
+  },
+  "SideMenu": {
+    "ar": "Argentyna",
+    "au": "Australia",
+    "at": "Austria",
+    "be": "Belgia",
+    "br": "Brazylia",
+    "bg": "Bułgaria",
+    "ca": "Kanada",
+    "cn": "Chiny",
+    "co": "Kolumbia",
+    "cu": "Kuba",
+    "cz": "Czechy",
+    "eg": "Egipt",
+    "fr": "Francja",
+    "de": "Niemcy",
+    "gr": "Grecja",
+    "hk": "Hongkong",
+    "hu": "Węgry",
+    "in": "Indie",
+    "id": "Indonezja",
+    "ie": "Irlandia",
+    "il": "Izrael",
+    "it": "Włochy",
+    "jp": "Japonia",
+    "lv": "Łotwa",
+    "lt": "Litwa",
+    "my": "Malezja",
+    "mx": "Meksyk",
+    "ma": "Maroko",
+    "nl": "Holandia",
+    "nz": "Nowa Zelandia",
+    "ng": "Nigeria",
+    "no": "Norwegia",
+    "ph": "Filipiny",
+    "pl": "Polska",
+    "pt": "Portugalia",
+    "ro": "Rumunia",
+    "ru": "Rosja",
+    "sa": "Arabia Saudyjska",
+    "rs": "Serbia",
+    "sg": "Singapur",
+    "sk": "Słowacja",
+    "si": "Słowenia",
+    "za": "Republika Południowej Afryki",
+    "kr": "Korea Południowa",
+    "se": "Szwecja",
+    "ch": "Szwajcaria",
+    "tw": "Tajwan",
+    "th": "Tajlandia",
+    "tr": "Turcja"
+  }
+}

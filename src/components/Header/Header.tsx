@@ -19,7 +19,7 @@ export const Header = (): ReactElement => {
   const {
     language: { currentLanguage },
     layout: { option },
-  } = useSelector((state: RootState) => state.persisted);
+  } = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   const handleLayoutOptionChange = (newOption: LayoutOption) => {
@@ -42,9 +42,11 @@ export const Header = (): ReactElement => {
     if (currentLanguage === "en") {
       dispatch(setCurrentLanguage("pl"));
       i18n.changeLanguage("pl");
+      localStorage.setItem("language", "pl");
     } else {
       dispatch(setCurrentLanguage("en"));
       i18n.changeLanguage("en");
+      localStorage.setItem("language", "en");
     }
 
     setIsVisible({ ...isVisible, dropdown: false });

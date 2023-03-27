@@ -6,6 +6,7 @@ import { News, NewsResponse } from "@redux/api/api";
 import { RootState } from "@redux/store";
 import { nanoid } from "@reduxjs/toolkit";
 import { CSSProperties, ReactElement, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import {
@@ -22,9 +23,11 @@ type Props = {
 };
 
 export const CountryNewsList = ({ data, isLoading }: Props): ReactElement => {
+  const { t } = useTranslation("common", { keyPrefix: "NewsList" });
+
   const [selectedItem, setSelectedItem] = useState<News | undefined>();
 
-  const { option } = useSelector((state: RootState) => state.persisted.layout);
+  const { option } = useSelector((state: RootState) => state.layout);
 
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -61,7 +64,7 @@ export const CountryNewsList = ({ data, isLoading }: Props): ReactElement => {
                 </div>
 
                 <p>
-                  <span>published:</span>
+                  <span>{t("published")}</span>
                   {new Date(item.publishedAt).toLocaleString("en-UK", {
                     year: "numeric",
                     month: "short",

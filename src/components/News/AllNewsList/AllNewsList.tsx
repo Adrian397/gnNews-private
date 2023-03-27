@@ -12,6 +12,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 import { Content, List, ListItem, Photo, Wrapper } from "./AllNewsList.styled";
@@ -31,7 +32,9 @@ export const NewsList = ({
   page,
   onPageChange,
 }: Props): ReactElement => {
-  const { option } = useSelector((state: RootState) => state.persisted.layout);
+  const { t } = useTranslation("common", { keyPrefix: "NewsList" });
+
+  const { option } = useSelector((state: RootState) => state.layout);
 
   const [selectedItem, setSelectedItem] = useState<News | undefined>();
 
@@ -101,7 +104,7 @@ export const NewsList = ({
                 </div>
 
                 <p>
-                  <span>published:</span>
+                  <span>{t("published")}</span>
                   {new Date(item.publishedAt).toLocaleString("en-UK", {
                     year: "numeric",
                     month: "short",
