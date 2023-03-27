@@ -1,4 +1,4 @@
-import { NewsList } from "@components/AllNewsList/AllNewsList";
+import { NewsList } from "@components/News/AllNewsList/AllNewsList";
 import { newsApi } from "@redux/api/api";
 import { ReactElement, useState } from "react";
 

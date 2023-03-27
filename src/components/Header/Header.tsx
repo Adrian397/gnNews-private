@@ -1,13 +1,25 @@
+import ArrowDown from "@assets/arrow-down.png";
+import { InfoModal } from "@components/Header/InfoModal/InfoModal";
+import { setCurrentLanguage } from "@redux/language";
 import { LayoutOption, setLayoutOption } from "@redux/layout";
 import { toggleIsOpen } from "@redux/sideMenu";
 import { RootState } from "@redux/store";
+import i18n from "@utils/i18next";
 import { paths } from "@utils/paths";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Info, NewsView, Wrapper } from "./Header.styled";
+import { Burger, Info, NewsView, SideButtons, Wrapper } from "./Header.styled";
 
 export const Header = (): ReactElement => {
-  const { option } = useSelector((state: RootState) => state.layout);
+  const [isVisible, setIsVisible] = useState({
+    modal: false,
+    dropdown: false,
+  });
+
+  const {
+    language: { currentLanguage },
+    layout: { option },
+  } = useSelector((state: RootState) => state.persisted);
   const dispatch = useDispatch();
 
   const handleLayoutOptionChange = (newOption: LayoutOption) => {
@@ -18,10 +30,30 @@ export const Header = (): ReactElement => {
     dispatch(toggleIsOpen());
   };
 
+  const handleOpenModal = () => {
+    setIsVisible({ ...isVisible, modal: true });
+  };
+
+  const handleOpenDropdown = () => {
+    setIsVisible({ ...isVisible, dropdown: !isVisible.dropdown });
+  };
+
+  const handleLanguageChange = () => {
+    if (currentLanguage === "en") {
+      dispatch(setCurrentLanguage("pl"));
+      i18n.changeLanguage("pl");
+    } else {
+      dispatch(setCurrentLanguage("en"));
+      i18n.changeLanguage("en");
+    }
+
+    setIsVisible({ ...isVisible, dropdown: false });
+  };
+
   return (
     <Wrapper>
       <div>
-        <button onClick={handleClick} />
+        <Burger onClick={handleClick} />
         <NewsView>
           <input
             checked={option === "list"}
@@ -47,7 +79,21 @@ export const Header = (): ReactElement => {
           gn<span>News</span>
         </a>
       </h1>
-      <Info />
+      <SideButtons isVisible={isVisible.dropdown}>
+        <div>
+          <button onClick={handleOpenDropdown}>
+            {currentLanguage} <img src={ArrowDown} />
+          </button>
+          <div>
+            <button onClick={handleLanguageChange}>
+              {currentLanguage === "en" ? "pl" : "en"}
+            </button>
+          </div>
+        </div>
+
+        <Info onClick={handleOpenModal} />
+      </SideButtons>
+      {isVisible.modal && <InfoModal onModalVisibilityChange={setIsVisible} />}
     </Wrapper>
   );
 };

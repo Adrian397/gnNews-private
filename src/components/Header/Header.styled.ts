@@ -4,6 +4,7 @@ import ListBlack from "@assets/list-black.svg";
 import ListWhite from "@assets/list-white.svg";
 import TileBlack from "@assets/tile-black.png";
 import TileWhite from "@assets/tile-white.png";
+import { StyledProps } from "@utils/styledProps";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -17,23 +18,6 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    button {
-      display: none;
-      padding: 1rem;
-      background-color: transparent;
-      border: 2px solid #333;
-      background: url(${Hamburger}) no-repeat center;
-      background-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 1030px) {
-      button {
-        display: block;
-      }
-    }
   }
 
   h1 {
@@ -48,6 +32,21 @@ export const Wrapper = styled.div`
     span {
       color: #89cff0;
     }
+  }
+`;
+
+export const Burger = styled.button`
+  display: none;
+  padding: 1rem;
+  background-color: transparent;
+  border: 2px solid #333;
+  background: url(${Hamburger}) no-repeat center;
+  background-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+
+  @media (max-width: 1030px) {
+    display: block;
   }
 `;
 
@@ -118,5 +117,52 @@ export const NewsView = styled.div`
     width: 1.5px;
     height: 75%;
     margin: 0rem 0.3rem;
+  }
+`;
+
+export const SideButtons = styled.div<StyledProps>`
+  display: flex;
+  align-items: center;
+
+  & > div {
+    position: relative;
+
+    button {
+      text-transform: uppercase;
+      width: 3.5rem;
+      border: 2px solid #709bf8;
+      background-color: #709bf8;
+      padding: 0.5rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+
+    img {
+      width: 12px;
+      height: 12px;
+      transform: ${({ isVisible }) =>
+        isVisible ? "rotate(-180deg)" : "rotate(0deg)"};
+      margin-left: 5px;
+      transition: transform 120ms ease;
+    }
+
+    div {
+      position: absolute;
+      width: 100%;
+      bottom: -2.5rem;
+      visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+      transform: ${({ isVisible }) =>
+        isVisible ? "translateY(0%)" : "translateY(-20%)"};
+      opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
+      transition: all 120ms ease;
+      button {
+        width: 100%;
+      }
+    }
   }
 `;

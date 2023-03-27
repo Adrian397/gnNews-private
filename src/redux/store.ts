@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   FLUSH,
   PAUSE,
@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { newsApi } from "./api/api";
+import languageReducer from "./language";
 import layoutReducer from "./layout";
 import sideMenuReducer from "./sideMenu";
 
@@ -19,11 +20,16 @@ const persistConfig = {
   storage,
 };
 
-const persistedLayoutReducer = persistReducer(persistConfig, layoutReducer);
+const rootReducer = combineReducers({
+  layout: layoutReducer,
+  language: languageReducer,
+});
+
+const persistedReducers = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: {
-    layout: persistedLayoutReducer,
+    persisted: persistedReducers,
     sideMenu: sideMenuReducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },

@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:import/typescript",
-    "plugin:jsx-a11y/recommended",
     "plugin:promise/recommended",
     "plugin:testing-library/react",
     "plugin:@typescript-eslint/recommended",

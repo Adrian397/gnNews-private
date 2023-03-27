@@ -1,44 +1,84 @@
 import NoPhoto from "@assets/no-photo.png";
 import { Footer } from "@components/Footer/Footer";
-import { NewsHeader } from "@components/NewsHeader/NewsHeader";
-import { NewsModal } from "@components/NewsModal/NewsModal";
+import { NewsModal } from "@components/News/NewsModal/NewsModal";
 import { News, NewsResponse } from "@redux/api/api";
 import { RootState } from "@redux/store";
 import { nanoid } from "@reduxjs/toolkit";
-import { CSSProperties, ReactElement, useRef, useState } from "react";
+import {
+  CSSProperties,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
-import {
-  Content,
-  List,
-  ListItem,
-  Photo,
-  Wrapper,
-} from "./CountryNewsList.styled";
+import { Content, List, ListItem, Photo, Wrapper } from "./AllNewsList.styled";
 
 type Props = {
   data?: NewsResponse;
+  isFetching: boolean;
   isLoading: boolean;
+  onPageChange: React.Dispatch<React.SetStateAction<number>>;
+  page: number;
 };
 
-export const CountryNewsList = ({ data, isLoading }: Props): ReactElement => {
+export const NewsList = ({
+  data,
+  isFetching,
+  isLoading,
+  page,
+  onPageChange,
+}: Props): ReactElement => {
+  const { option } = useSelector((state: RootState) => state.persisted.layout);
+
   const [selectedItem, setSelectedItem] = useState<News | undefined>();
 
-  const { option } = useSelector((state: RootState) => state.layout);
-
   const listRef = useRef<HTMLUListElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const list = listRef.current;
+    if (!list) {
+      return;
+    }
+
+    const isScrolledToBottom =
+      list.clientHeight + list.scrollTop >= list.scrollHeight;
+
+    if (
+      isScrolledToBottom &&
+      !isFetching &&
+      data &&
+      data.articles.length % 25 === 0
+    ) {
+      onPageChange(page + 1);
+    }
+  }, [page, isFetching]);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (list) {
+      list.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (list) {
+        list.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [handleScroll]);
 
   const override: CSSProperties = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "calc(100vh - 218px)",
+    height: isLoading ? "calc(100vh - 180px)" : "",
   };
 
   return (
     <>
       <Wrapper>
-        <NewsHeader />
         <List isLoading={isLoading} layout={option} ref={listRef}>
           {data?.articles.map((item) => (
             <ListItem
@@ -49,9 +89,9 @@ export const CountryNewsList = ({ data, isLoading }: Props): ReactElement => {
             >
               <Photo isVisible={!!item.urlToImage} layout={option}>
                 {item.urlToImage ? (
-                  <img src={item.urlToImage} /> /*eslint-disable-line*/
+                  <img src={item.urlToImage} />
                 ) : (
-                  <img src={NoPhoto} /> /*eslint-disable-line*/
+                  <img src={NoPhoto} />
                 )}
               </Photo>
               <Content layout={option}>
@@ -74,7 +114,7 @@ export const CountryNewsList = ({ data, isLoading }: Props): ReactElement => {
           <BeatLoader
             color="#89cff0"
             cssOverride={override}
-            loading={isLoading}
+            loading={isFetching && data && data.articles.length % 25 === 0}
           />
         </List>
         <Footer

@@ -1,4 +1,4 @@
-import { CountryNewsList } from "@components/CountryNewsList/CountryNewsList";
+import { CountryNewsList } from "@components/News/CountryNewsList/CountryNewsList";
 import { newsApi } from "@redux/api/api";
 import { ReactElement } from "react";
 import { useLocation } from "react-router-dom";
