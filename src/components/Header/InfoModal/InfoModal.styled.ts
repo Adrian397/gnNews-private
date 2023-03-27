@@ -41,7 +41,18 @@ export const Modal = styled.div`
     }
   }
 
-  h1 {
+  p {
     color: #333;
+    line-height: 2;
+
+    span {
+      display: inline-block;
+      background-color: #e3e6e8;
+      padding: 0rem 0.5rem;
+      height: 25px;
+      font-size: 14px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
   }
 `;
