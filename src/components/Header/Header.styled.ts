@@ -147,7 +147,7 @@ export const SideButtons = styled.div<StyledProps>`
       height: 12px;
       transform: ${({ isVisible }) =>
         isVisible ? "rotate(-180deg)" : "rotate(0deg)"};
-      margin-left: 5px;
+      margin-left: 7px;
       transition: transform 120ms ease;
     }
 

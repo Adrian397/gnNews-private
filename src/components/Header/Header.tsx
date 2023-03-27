@@ -1,4 +1,4 @@
-import ArrowDown from "@assets/arrow-down.png";
+import Arrow from "@assets/arrow.png";
 import { InfoModal } from "@components/Header/InfoModal/InfoModal";
 import { setCurrentLanguage } from "@redux/language";
 import { LayoutOption, setLayoutOption } from "@redux/layout";
@@ -82,7 +82,7 @@ export const Header = (): ReactElement => {
       <SideButtons isVisible={isVisible.dropdown}>
         <div>
           <button onClick={handleOpenDropdown}>
-            {currentLanguage} <img src={ArrowDown} />
+            {currentLanguage} <img src={Arrow} />
           </button>
           <div>
             <button onClick={handleLanguageChange}>
