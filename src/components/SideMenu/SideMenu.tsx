@@ -27,13 +27,14 @@ export const SideMenu = (): ReactElement => {
   };
 
   return (
-    <Wrapper isVisible={isOpen}>
+    <Wrapper data-testid="SideMenu" isVisible={isOpen}>
       <ul>
         {countries.map((country) => (
           /*eslint-disable*/
           <li
             key={nanoid()}
             onClick={() => handleCountryChoice(country.name, country.code)}
+            data-testid="ListItem"
           >
             <Flags code={country.code} />
             {t(country.code)}

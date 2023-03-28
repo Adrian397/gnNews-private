@@ -53,9 +53,9 @@ export const Header = (): ReactElement => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="Header">
       <div>
-        <Burger onClick={handleClick} />
+        <Burger data-testid="Burger" onClick={handleClick} />
         <NewsView>
           <input
             checked={option === "list"}
@@ -87,13 +87,13 @@ export const Header = (): ReactElement => {
             {currentLanguage} <img src={Arrow} />
           </button>
           <div>
-            <button onClick={handleLanguageChange}>
+            <button data-testid="Language" onClick={handleLanguageChange}>
               {currentLanguage === "en" ? "pl" : "en"}
             </button>
           </div>
         </div>
 
-        <Info onClick={handleOpenModal} />
+        <Info data-testid="InfoModalBtn" onClick={handleOpenModal} />
       </SideButtons>
       {isVisible.modal && <InfoModal onModalVisibilityChange={setIsVisible} />}
     </Wrapper>

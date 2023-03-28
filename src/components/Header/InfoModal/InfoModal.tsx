@@ -20,7 +20,7 @@ export const InfoModal = ({ onModalVisibilityChange }: Props): ReactElement => {
   };
 
   return (
-    <Wrapper onClick={() => handleCloseModal()}>
+    <Wrapper data-testid="InfoModal" onClick={() => handleCloseModal()}>
       <Modal onClick={(e) => e.stopPropagation()}>
         <div>
           <button onClick={() => handleCloseModal()} />

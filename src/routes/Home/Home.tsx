@@ -1,4 +1,4 @@
-import { NewsList } from "@components/News/AllNewsList/AllNewsList";
+import { AllNewsList } from "@components/News/AllNewsList/AllNewsList";
 import { newsApi } from "@redux/api/api";
 import { ReactElement, useState } from "react";
 
@@ -11,7 +11,7 @@ const Home = (): ReactElement => {
   });
 
   return (
-    <NewsList
+    <AllNewsList
       data={data}
       isFetching={isFetching}
       isLoading={isLoading}

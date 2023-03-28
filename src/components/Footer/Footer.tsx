@@ -23,7 +23,7 @@ export const Footer = ({ count, total }: Props): ReactElement => {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="Footer">
       <div>
         <p>
           {t("count")} {count}

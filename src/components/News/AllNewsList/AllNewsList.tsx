@@ -25,7 +25,7 @@ type Props = {
   page: number;
 };
 
-export const NewsList = ({
+export const AllNewsList = ({
   data,
   isFetching,
   isLoading,
@@ -81,7 +81,7 @@ export const NewsList = ({
 
   return (
     <>
-      <Wrapper>
+      <Wrapper data-testid="AllNewsList">
         <List isLoading={isLoading} layout={option} ref={listRef}>
           {data?.articles.map((item) => (
             <ListItem
