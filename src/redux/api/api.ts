@@ -23,14 +23,12 @@ type NewsArgs = {
   pageSize?: number;
 };
 
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export const newsApi = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${proxyUrl}https://newsapi.org/v2`,
+    baseUrl: "https://newsapi.org/v2",
     headers: { Authorization: apiKey },
   }),
   tagTypes: ["CountryNews"],
