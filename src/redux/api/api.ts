@@ -30,7 +30,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 export const newsApi = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://newsapi.org/v2",
+    baseUrl: `${proxyUrl}https://newsapi.org/v2`,
     headers: { Authorization: apiKey },
   }),
   tagTypes: ["CountryNews"],
