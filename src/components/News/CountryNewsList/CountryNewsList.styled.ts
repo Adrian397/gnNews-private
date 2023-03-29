@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   height: calc(100vh - 82px);
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
 `;
 
 export const List = styled.ul<StyledProps>`
