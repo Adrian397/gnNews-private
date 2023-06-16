@@ -1,14 +1,16 @@
-Przed wystartowaniem aplikacji lokalnie należy:
-- utworzyć plik zmiennych środowiskowych (.env) i umieścić swój własny klucz api - VITE_API_KEY=..., który generuje się po zarejestrowaniu konta w serwisie https://newsapi.org/
+# Application created for recruitment purposes
 
-Do stworzenia aplikacji wykorzystałem:
+Before launching the application locally, you have to:
+- create an environment variables file (.env) and place your own api key - VITE_API_KEY=..., which is generated after registering an account on the site -https://newsapi.org/
+
+To create the application, I used:
 - typescript,
 - react.js,
 - redux toolkit, rtk query,
 - react router,
 - styled components,
-- vitest + rtl (testy)
-- i18next (translacja),
-- customowy config eslinta
+- vitest + react-test-library
+- i18next (translations),
+- custom eslint config
 
 ![Design preview for the english-educational-app](./public/preview.png)
